@@ -32,7 +32,7 @@
             <DataGrid ItemsSource="{Binding Employees}" Margin="5" AutoGenerateColumns="True" AutoGeneratingColumn="OnAutoGeneratingColumn" SelectedIndex="{Binding SelectedEmployeeIdx}" Height="200"  IsReadOnly="True" Width="495"></DataGrid>
 
             <Label Content="Конечная дата расчёта:"/>
-            <DatePicker MinWidth="200" Height="27" SelectedDate="{Binding DateStart}" IsEnabled="{Binding ToNow, Converter={StaticResource InverseBooleanConverter}}" Margin="5" ToolTip="Выберите дату"/>
+            <DatePicker MinWidth="200" Height="27" SelectedDate="{Binding DateEnd}" IsEnabled="{Binding ToNow, Converter={StaticResource InverseBooleanConverter}}" Margin="5" ToolTip="Выберите дату"/>
             <CheckBox Content="По состоянию на сегодня" Margin="5" IsChecked="{Binding ToNow}" />
 
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">

@@ -4,6 +4,7 @@ using Collegues.DatabaseModels;
 using Collegues.Domain;
 using Collegues.Domain.Abstract;
 using Collegues.Domain.Abstract.Calculators;
+using Collegues.Views;
 using DryIoc;
 using Prism.Commands;
 using Prism.Ioc;
@@ -39,11 +40,11 @@ namespace Collegues.ViewModels
         }
 
 
-        private DateTime dateStart;
+        private DateTime dateEnd = DateTime.Now;
         private int selectedEmployeeIdx;
         private bool toNow;
 
-        public DateTime DateStart { get => dateStart; set => SetProperty(ref dateStart, value); }
+        public DateTime DateEnd { get => dateEnd; set => SetProperty(ref dateEnd, value); }
         public ObservableCollection<Employee> Employees { set; get; } = new();
         public int SelectedEmployeeIdx { get => selectedEmployeeIdx; set => SetProperty(ref selectedEmployeeIdx, value); }
         public bool ToNow { get => toNow; set => SetProperty(ref toNow, value); }
@@ -58,7 +59,7 @@ namespace Collegues.ViewModels
                     if (selectedEmployeeIdx != -1)
                     {
                         EmployeeBase employee = EmployeesDto.GetEmployee(Employees[selectedEmployeeIdx]);
-                        MessageBox.Show($"Заработная плата: {employeeSalaryCalculator.CalculateSalary(employee, DateStart, DateTime.Now)}");
+                        MessageBox.Show($"Заработная плата: {employeeSalaryCalculator.CalculateSalary(employee, employee.EmploymentFrom, DateEnd)}");
                     }
                 });
             }
@@ -69,7 +70,13 @@ namespace Collegues.ViewModels
             {
                 return new DelegateCommand(() =>
                 {
-
+                    double totalSum = 0;
+                    foreach(var empl in employeesRepository.GetAll())
+                    {
+                        EmployeeBase employee = EmployeesDto.GetEmployee(empl);
+                        totalSum += employeeSalaryCalculator.CalculateSalary(employee, employee.EmploymentFrom, DateEnd);
+                    }
+                    MessageBox.Show($"Общая заработная плата: {totalSum}");
                 });
             }
         }
@@ -79,7 +86,20 @@ namespace Collegues.ViewModels
             {
                 return new DelegateCommand(() =>
                 {
-
+                    if (selectedEmployeeIdx != -1)
+                    {
+                        Employee employee = Employees[selectedEmployeeIdx];
+                        if(employee.Subordinates != null)
+                        {
+                            Subordinates subordinatesView = new();
+                            (subordinatesView.DataContext as SubordinatesViewModel)!.Subordinates = 
+                                new ObservableCollection<Employee>(employee.Subordinates);
+                        }
+                        else
+                        {
+                            MessageBox.Show("Подчиненных нет");
+                        }
+                    }
                 });
             }
         }

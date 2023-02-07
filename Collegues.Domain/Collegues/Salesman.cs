@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Collegues.Domain.Collegues
 {
-    public class Salesman: EmployeeBase
+    public class Salesman: EmployeeBase, IBoss
     {
         public List<EmployeeBase> Subordinates { set; get; } = new();
 

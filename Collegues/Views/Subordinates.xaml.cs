@@ -1,5 +1,4 @@
-﻿using Collegues.Domain.Collegues;
-using MahApps.Metro.Controls;
+﻿using MahApps.Metro.Controls;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -14,27 +13,26 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
 using System.Windows.Shapes;
 
 namespace Collegues.Views
 {
     /// <summary>
-    /// Interaction logic for MainWindow.xaml
+    /// Логика взаимодействия для SubordinatesView.xaml
     /// </summary>
-    public partial class Main : MetroWindow
+    public partial class Subordinates : MetroWindow
     {
-        public Main()
+        public Subordinates()
         {
             InitializeComponent();
         }
-
         private void OnAutoGeneratingColumn(object sender, DataGridAutoGeneratingColumnEventArgs e)
         {
             if (((PropertyDescriptor)e.PropertyDescriptor).IsBrowsable == false)
                 e.Cancel = true;
 
             var displayName = GetPropertyDisplayName(e.PropertyDescriptor);
+
             if (!string.IsNullOrEmpty(displayName))
             {
                 e.Column.Header = displayName;

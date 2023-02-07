@@ -16,11 +16,8 @@ namespace Collegues.Database
             this.context = context;
         }
 
-        public List<Employee> GetAll()
-        {
-            throw new NotImplementedException();
-        }
-
+        public List<Employee> GetAll() => context.Employees.ToList();
         public Employee? GetById(int id) => context.Employees.FirstOrDefault(e => e.Id == id);
+        
     }
 }

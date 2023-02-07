@@ -1,0 +1,13 @@
+﻿<mah:MetroWindow x:Class="Collegues.Views.Subordinates"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:mah="http://metro.mahapps.com/winfx/xaml/controls"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Collegues.Views"
+        mc:Ignorable="d"
+        Title="Подчиненные" Height="290" Width="525">
+    <Grid>
+        <DataGrid ItemsSource="{Binding Subordinates}" Margin="5" AutoGenerateColumns="True" AutoGeneratingColumn="OnAutoGeneratingColumn" SelectedIndex="{Binding SelectedEmployeeIdx}" Height="200"  IsReadOnly="True" Width="495"></DataGrid>
+    </Grid>
+</mah:MetroWindow>
