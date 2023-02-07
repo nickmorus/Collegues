@@ -1,0 +1,39 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net7.0-windows</TargetFramework>
+    <Nullable>enable</Nullable>
+    <UseWPF>true</UseWPF>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="img\ok.png" />
+    <None Remove="img\plus.png" />
+    <None Remove="img\remove.png" />
+    <None Remove="img\subordination.png" />
+    <None Remove="img\sumAll.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="MahApps.Metro" Version="2.4.9" />
+    <PackageReference Include="Prism.Core" Version="8.1.97" />
+    <PackageReference Include="Prism.DryIoc" Version="8.1.97" />
+    <PackageReference Include="Prism.Wpf" Version="8.1.97" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Colegues.Business\Colegues.Business.csproj" />
+    <ProjectReference Include="..\Collegues.Database\Collegues.Database.csproj" />
+    <ProjectReference Include="..\Collegues.Domain\Collegues.Domain.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="img\ok.png" />
+    <Resource Include="img\plus.png" />
+    <Resource Include="img\remove.png" />
+    <Resource Include="img\subordination.png" />
+    <Resource Include="img\sumAll.png" />
+  </ItemGroup>
+
+</Project>
